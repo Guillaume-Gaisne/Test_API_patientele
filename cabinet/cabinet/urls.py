@@ -18,12 +18,13 @@ from django.urls import path, include
 from rest_framework import routers
 from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
 
-from secretariat.views import PatientViewset
+from secretariat.views import PatientViewset, ConsultationViewset
 
 # Using a router because of the use of a ModelViewSet
 router = routers.SimpleRouter()
 
 router.register('patients', PatientViewset, basename='patients')
+router.register('consultations', ConsultationViewset, basename='consultations')
 
 urlpatterns = [
     path('admin/', admin.site.urls),
