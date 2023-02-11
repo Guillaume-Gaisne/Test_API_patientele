@@ -16,16 +16,19 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from rest_framework import routers
+from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
 
 from secretariat.views import PatientViewset
 
 # Using a router because of the use of a ModelViewSet
 router = routers.SimpleRouter()
 
-router.register('patient', PatientViewset, basename='patient')
+router.register('patients', PatientViewset, basename='patients')
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api_auth/', include('rest_framework.urls')),
+    path('api/token/', TokenObtainPairView.as_view(), name='token-obtain-pair'),
+    path('api/token/refresh/', TokenRefreshView.as_view(), name='token-refresh'),
     path('api/', include(router.urls)),
 ]
