@@ -28,9 +28,6 @@ class Command(BaseCommand):
 
         fake_patient = Faker(CHOICE_NATIONALITY)
 
-        # Reseting the databse before creating new entries
-        Patient.objects.all().delete()
-
         for num_patient in tqdm(range(NB_ENTRIES)):
             # maxsplit=1 to deal with composed last name, usually composed first names
             # are linked with '-'

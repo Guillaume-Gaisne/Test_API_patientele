@@ -3,7 +3,9 @@ from rest_framework.permissions import BasePermission
 class IsAdminAuthenticated(BasePermission):
 
     def has_permission(self, request, view):
-        if request.method == 'GET' and view.action in ['list', 'retrieve']:
+        # Putting permissions only on the 'GET' request, preventing anyone
+        # to modify the informations in the database
+        if request.method == 'GET':
             return True
         else:
             return bool(request.user
