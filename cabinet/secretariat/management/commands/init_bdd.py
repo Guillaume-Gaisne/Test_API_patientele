@@ -9,7 +9,7 @@ from secretariat.models import Patient
 ADMIN_LOGIN = 'admin'
 PASSWORD_LOGIN = '123'
 
-NB_ENTRIES = 10
+NB_ENTRIES = 5000
 CHOICE_NATIONALITY = 'fr_FR'
 
 class Command(BaseCommand):
