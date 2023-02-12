@@ -8,9 +8,10 @@ class PatientSerializer(ModelSerializer):
         model = Patient
         fields = ['id', 'first_name', 'last_name', 'address', 'email']
 
+    # To ensure the unicity of the mailing address when creating a new Patient entry
     def validate_email(self, value):
         if Patient.objects.filter(email=value).exists():
-            raise ValidationError('Cet email existe déjà')
+            raise ValidationError('This mailing address is already used. Choose an other one.')
         return value
 
 class ConsultationSerializer(ModelSerializer):

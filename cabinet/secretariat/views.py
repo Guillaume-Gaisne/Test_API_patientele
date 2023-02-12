@@ -10,13 +10,11 @@ class PatientViewset(ModelViewSet):
 
     serializer_class = PatientSerializer
 
-    # Only authenticated administratos 
+    # IsAdminAuthenticated allows anyone to access the list of patients
+    # with a GET request but forbids non superuser to POST, PUT/PATCH or DELETE
     permission_classes = [IsAdminAuthenticated]
     queryset = Patient.objects.all()
 
-
-    # def get_queryset(self):
-    #     return Patient.objects.all()
 
 class ConsultationViewset(ModelViewSet):
 
@@ -25,8 +23,10 @@ class ConsultationViewset(ModelViewSet):
     def get_queryset(self):
         queryset = Consultation.objects.all()
 
+        # To allow the access to the consultations of a particuler patient
+        # with the parameter 'patient_id= int' in the URL request
         patient_id = self.request.GET.get('patient_id')
-
         if patient_id is not None:
             queryset = queryset.filter(patient_id=patient_id)
+        
         return queryset
