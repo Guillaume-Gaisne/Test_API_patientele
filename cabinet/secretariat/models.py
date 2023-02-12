@@ -4,7 +4,7 @@ class Patient(models.Model):
 
     first_name = models.CharField(max_length=100)
     last_name = models.CharField(max_length=100)
-    adress = models.CharField(max_length=500)
+    address = models.CharField(max_length=500)
     email = models.EmailField()
 
 class Consultation(models.Model):
