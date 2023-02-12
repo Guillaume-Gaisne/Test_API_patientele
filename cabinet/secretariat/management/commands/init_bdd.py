@@ -15,7 +15,7 @@ CHOICE_NATIONALITY = 'fr_FR'
 
 class Command(BaseCommand):
     
-    help = f'Reset of the database, filling it with {NB_ENTRIES} new entries.'
+    help = f'Filling the database with {NB_ENTRIES} new entries.'
 
     def handle(self, *args, **kwargs):
 
